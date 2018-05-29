@@ -1,0 +1,226 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+<ul class="nav navbar-nav navbar-right topright">
+    <li>
+        <a href="{{url_for('auth.login')}}">
+            <span class="glyphicon glyphicon-user"></span> Sign Up</a>
+    </li>
+    <li>
+        <a href="{{url_for('auth.register')}}">
+            <span class="glyphicon glyphicon-log-in"></span> Login</a>
+    </li>
+</ul>
+
+<div class="head">
+    <h1>
+        <span class="fancy">
+            <span>Beats Hub</span>
+        </span>
+    </h1>
+    <p>
+        <em>The power of music</em>
+    </p>
+
+</div>
+
+
+
+<div class="links" style="list-style:none">
+    <ul>
+        <a class="button" href="#video">Artists</a>
+        <a class="button" href="#">Producers</a>
+        <a class="button" href="#">DJs</a>
+    </ul>
+</div>
+
+
+
+<div class="col-md-12 second" name="video">
+    <br>
+    <video class="vida" poster="https://m.cdn.sera.to/rane-12-72/posters/masthead_poster_landscape.jpg" autoplay muted loop>
+        <source src="https://m.cdn.sera.to/rane-12-72/videos/masthead_landscape_1mb.mp4" type="video/mp4">
+    </video>
+</div>
+
+<div class="container-fluid" style="padding-top:60vh">
+    <div class="col-md-9">
+        <div class="col-md-12">
+            <div class="artists">
+                <img src="{{url_for('static',filename='Images/image10.jpg')}}">
+                <p>If you are an upcoming artist or new to the industry, using beats hub you can post your most recent demo
+                    at the artists channel and let our team of proffessionals be the judges thus eventually we can find the
+                    best producer that suits you, who can coach you accordingly as well as advice on the way forward.
+                    <br> If your work is exempraly we have contacts to major local record labels ready to sign, writers and voice
+                    coaches who are more than willing to tap your talent nurture and develop it to greater heights.
+                    <br> Let
+                    <strong>Beats-hub</strong> do the search work for you and be your partners on your path to greatness.</p>
+                <br>
+                <ul>
+                    <a href="#" class="myButton">Interact</a>
+                    <a href="#" class="myButton">Featured Artists</a>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-12">
+            <div class="Djs">
+                <img src="{{url_for('static',filename='Images/image11.jpg')}}">
+                <p>Beats-hub is the best onestop platform to access clean extended exclusive music files from oldschool to modern
+                    in all genres. Save yourself the research hustle and rely the task on us and access content at an affordable
+                    subscription fee
+                    <br> Access high quality extended audio file formats as well as video formats and save yourself the hustle
+                    of re-editing, for conviniency and efficiency purposes.
+                    <br> Performing djs who wish to do remixes and mash-ups to spice things up you are also catered for where
+                    you can access high quality 3-pieces straight from the producers in accordance to copyrights laws.
+                    <br> Let's impact the growth of local african talent to greater heights.</p>
+                <br>
+                <ul>
+                    <a href="#" class="myButton">Interact</a>
+                    <a href="#" class="myButton">Featured Djs</a>
+
+
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-md-12">
+            <div class="Producers">
+                <img src="{{url_for('static',filename='Images/image12.jpg')}}">
+                <p>Get to interact in a community of passionate producers and learn from others as they learn from your contributions.
+                    Get to meet new talented artists and work with them to make great exempolary work. Also get to interact
+                    with djs and gain feed back off your music projects incoorporate the feedback to our work and improve
+                    your craft as you rise to the top.
+                    <br> Get updates on the latest trends in software changes and development as well as hardware from
+                    <strong>Beats-hub</strong> and gain the best from us.
+                    <br>
+                    <br>
+                    <ul>
+                        <a href="#" class="myButton">Interact</a>
+                        <a href="#" class="myButton">Featured Producers</a>
+                    </ul>
+                </p>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-md-3">
+
+        <ul class class="aside">
+            <div class="dropdown">
+                <button class="asidebtn">Post</button>
+                <div class="dropdown-content">
+                    <a href="#">Music</a>
+                    <a href="#">Demo</a>
+                    <a href="#">Remixes</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="asidebtn">Catalogue</button>
+                <div class="dropdown-content" style="text-align: center">
+                    <a href="#">Most rated</a>
+                    <a href="#">Recent uploads</a>
+                    <a href="#">Popular remixes</a>
+                </div>
+            </div>
+            <div class="dropdown">
+                <button class="asidebtn">Genres</button>
+                <div class="dropdown-content">
+                    <a href="#">Hop Hop</a>
+                    <a href="#">RNB</a>
+                    <a href="#">TRAP</a>
+                    <a href="#">House Music</a>
+                    <a href="">Dubstep</a>
+                    <a href="">Kwaito</a>
+                    <a href="">Afro Soul</a>
+                </div>
+            </div>
+        </ul>
+        <div class="">
+            <ul>
+                <blockquote class="list-unstyled sideimg">
+                    <div class="col-md-12">
+                        <h2>Recent Activities</h2>
+                        <li>
+                            <img class="cake" src="{{url_for('static',filename='Images/users/user1.png')}}" alt="">User 1</li>
+                        <li>
+                            <img class="cake" src="{{url_for('static',filename='Images/users/user1.png')}}" alt="">User 2</li>
+                        <li>
+                            <img class="cake" src="{{url_for('static',filename='Images/users/user1.png')}}" alt="">User 3</li>
+                        <li>
+                            <img class="cake" src="{{url_for('static',filename='Images/users/user1.png')}}" alt="">User 4</li>
+                        <li>
+                            <img class="cake" src="{{url_for('static',filename='Images/users/user1.png')}}" alt="">User 5</li>
+                        <li>
+                            <img class="cake" src="{{url_for('static',filename='Images/users/user1.png')}}" alt="">User 6</li>
+
+                    </div>
+
+                </blockquote>
+            </ul>
+
+            <ul>
+                <blockquote class="list-unstyled sideimg">
+                    <div class="col-md-12">
+                        <h2>Developers</h2>
+                        <li>
+                            <img class="cake" src="{{url_for('static',filename='Images/users/user1.png')}}" alt="">Victor Maina</li>
+                        <li>
+                            <img class="cake" src="{{url_for('static',filename='Images/users/user2.png')}}" alt="">Brian Mutai</li>
+                        <li>
+                            <img class="cake" src="{{url_for('static',filename='Images/users/user1.png')}}" alt="">Joshua Kariuki</li>
+                        <li>
+                            <img class="cake" src="{{url_for('static',filename='Images/users/user2.png')}}" alt="">Brian Kerama</li>
+
+
+                    </div>
+
+                </blockquote>
+            </ul>
+
+        </div>
+
+    </div>
+</div>
+
+<div class="footer">
+    <br>
+    <div class="images">
+        <img src="{{url_for('static',filename='Image/users/facebook1.png')}}" width="40px" height="40px">
+        <img src="{{url_for('static',filename='Image/users/twitter1.png')}}" width="40px" height="40px">
+        <img src="{{url_for('static',filename='Image/users/linkedin.png')}}" width="40px" height="40px">
+    </div>
+
+    <div id="Contact" class="tabcontent">
+
+        <a href="mailto:beatshub@gmail.com ">
+            <h4>Contact us :+254729383248</h4>
+        </a>
+
+    </div>
+
+    <div id="Policy" class="tabcontent">
+    </div>
+
+    <div id="Work" class="tabcontent">
+    </div>
+
+    <div id="Legal" class="tabcontent">
+    </div>
+
+    <p>A world class music platform</p>
+    <p>Beats hub 2018.All rights reserved.</p>
+    <br>
+
+    <a href="#" class="float">
+        <i class="fa fa-envelope my-float"></i>
+    </a>
+    <div class="label-container">
+        <div class="label-text">Feedback</div>
+        <i class="fa fa-play label-arrow"></i>
+    </div>
+
+
+</div>
+
+{% endblock %}
