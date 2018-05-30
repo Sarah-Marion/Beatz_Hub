@@ -1,7 +1,9 @@
 import os, jwt
-from . import db, login_manager
+from . import login_manager
+from . import db, admin
+from flask_admin.contrib.sqla import ModelView
 from werkzeug.security import generate_password_hash, check_password_hash
-from flask_login import UserMixin
+from flask_login import UserMixin, current_user
 from datetime import datetime
 from time import time
 
@@ -15,6 +17,10 @@ class User(UserMixin,db.Model):
     username = db.Column(db.String(48), unique = True, index=True)
     email = db.Column(db.String(48),unique=True, index = True)
     hash_pass = db.Column(db.String(255)) 
+
+    posts = db.relationship('Post', backref='user', lazy='dynamic')
+    is_admin = db.Column(db.Boolean)
+    comments = db.relationship('Comment', backref='user', lazy='dynamic')
 
     @property
     def password(self):
@@ -40,3 +46,84 @@ class User(UserMixin,db.Model):
         except:
             return
         return User.query.get(id)  
+
+
+class Post(UserMixin, db.Model):
+    """ 
+    class modelling the posts
+    """
+
+    __tablename__ = 'posts'
+
+    # add columns
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String)
+    post = db.Column(db.String)
+    image_name = db.Column(db.String)
+    image_url = db.Column(db.String)
+    timeposted = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    comments = db.relationship('Comment', backref='post', lazy='dynamic')
+
+    def __repr__(self):
+        return f'Post{self.post}'
+
+
+# Role class 
+class Role(UserMixin, db.Model):
+    """ 
+    class modelling the role of each user
+    """
+
+    __tablename__ = "roles"
+
+    # add columns
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String)
+    
+
+    def __repr__(self):
+        return f'Post{self.name}'
+
+# comments
+class Comment(UserMixin, db.Model):
+    """ 
+    User comment model for each post
+    """
+
+    __tablename__ = "comments"
+
+    # add columns
+    id = db.Column(db.Integer, primary_key=True)
+    comment = db.Column(db.String)
+    commenter = db.Column(db.String)
+    
+    users_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+    
+    def __repr__(self):
+        return f'Post{self.comment}'
+
+
+class Subscribers(UserMixin, db.Model):
+
+    __tablename__ = "subscribers"
+
+    # add columns 
+    id= db.Column(db.Integer, primary_key=True)
+    email = db.Column(db.String, unique=True)
+
+    def __repr__(self):
+        return f'Subscribers{self.email}'
+
+class MyModelView(ModelView):
+    def is_accessible(self):
+        return False
+
+            
+
+admin.add_view(ModelView(User, db.session))
+admin.add_view(ModelView(Post, db.session))
+admin.add_view(ModelView(Comment, db.session))
+admin.add_view(ModelView(Subscribers, db.session))        
