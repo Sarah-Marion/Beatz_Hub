@@ -7,31 +7,32 @@ import markdown2
 from .forms import RegistrationForm, LoginForm, ResetPassword, NewPassword
 from . import auth
 from flask_admin.contrib.sqla import ModelView
-# from ..email import send_email, send_reset_email, send_registration_email
+from ..email import send_email, send_reset_email, send_registration_email
 
 
 
 @auth.route('/register', methods = ['GET','POST'])
 def register():
+    if current_user.is_authenticated:
+        return redirect(url_for('main.index'))
+        
     title = "Create New Account"
     form = RegistrationForm()
 
     if form.validate_on_submit():
         user = User(email = form.email.data, username = form.username.data, password = form.password.data)
-        pass_key = form.password.data
         db.session.add(user)
         db.session.commit()
+
+        send_registration_email(user)
         return redirect(url_for('auth.login'))
     
     return render_template('auth/register.html', registration_form = form, title = title)
-
-
 
 @auth.route('/login', methods = ['GET','POST'])
 def login():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
-
     title = "Login"
     login_form = LoginForm()
 
@@ -43,8 +44,6 @@ def login():
         flash('Invalid username or Password')
 
     return render_template('auth/login.html', login_form = login_form,title=title)
-    
-
 
 @auth.route('/logout')
 @login_required

@@ -1,27 +1,39 @@
-{% extends 'base.html' %}
-{% import 'bootstrap/wtf.html' as wtf %}
-{% block styles %}
-    {{ super() }}
-    <!-- <link rel="stylesheet" href="{{url_for('static',filename='CSS/login.css')}}"> -->
-{% endblock %}
-{% block content %}
-<div class="image">
-<div class="container-fluid">
+{% extends 'base.html' %} {% import 'bootstrap/wtf.html' as wtf %} {% block content %}
+<div class="container">
     <div class="row">
-        <div class="col-xs-4 col-centered" id="form">
-                {% for message in get_flashed_messages() %}
-                <div class="alert alert-danger">
+        <div class="col-md-4 col-centered" id="form">
+            {% for message in get_flashed_messages() %}
+            <div class="alert alert-danger">
                 <button type="button" class="close" data-dismiss="alert">&times;</button>
                 {{ message }}
-                </div>
-      
+            </div>
             {% endfor %}
-            {{wtf.quick_form(login_form)}}
-           
-            
-            <p> <a href="{{url_for('auth.register')}}">Sign up or Register here today</a></p>
         </div>
     </div>
-</div>
+    <div class="row authenticate">
+        <div class="col-md-5">
+            <h3>Log in</h3>
+            <hr>
+            <form action="" method="POST">
+                {{login_form.hidden_tag()}}
+                <p> {{login_form.email(size=32)}} </p>
+                {% for error in login_form.email.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+                <p> {{login_form.password(size=32)}} </p>
+                {% for error in login_form.password.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+                <p> {{login_form.remember()}} {{login_form.remember.label}} </p>
+                <p> {{login_form.submit()}} </p>
+            </form>
+            <p>Forgot Password?
+                <a href="{{url_for('auth.reset_password')}}">Reset Password</a>
+            </p>
+            <p>Don't have an account?
+                <a href="{{url_for('auth.register')}}"> Sign up </a>
+            </p>
+        </div>
+    </div>
 </div>
 {% endblock %}

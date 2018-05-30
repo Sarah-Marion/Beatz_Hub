@@ -3,3 +3,4 @@ start.sh
 .vscode/
 *.pyc
 __pycache__/
+virtual/

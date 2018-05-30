@@ -18,11 +18,11 @@ class Config:
     #Flask-Mail SMTP server settings
     MAIL_SERVER ='smtp.googlemail.com'
     MAIL_PORT = 587
-    MAIL_USE_TLS = True
-    MAIL_USE_SSL = True
+    MAIL_USE_TLS = 1
+    # MAIL_USE_SSL = True
     MAIL_USERNAME = os.environ.get("MAIL_USERNAME")
     MAIL_PASSWORD = os.environ.get("MAIL_PASSWORD")
-    SENDER_EMAIL = 'devsarahmarion@gmail.com'
+    # SENDER_EMAIL = 'devsarahmarion@gmail.com'
 
 
     @staticmethod
@@ -35,9 +35,6 @@ class Config:
     SIMPLEMDE_USE_CDN = True
     BASIC_AUTH_USERNAME = 'Sarah'
     BASIC_AUTH_pASSWORD = os.environ.get("MAIL_PASSWORD")
-
-
-    
 
 class ProdConfig(Config):
     """

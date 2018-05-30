@@ -9,8 +9,6 @@ from flask_simplemde import SimpleMDE
 from flask_basicauth import BasicAuth
 from flask_uploads import UploadSet,configure_uploads,IMAGES
 
-
-
 bootstrap = Bootstrap()
 db = SQLAlchemy()
 admin = Admin()

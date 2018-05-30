@@ -1,0 +1,9 @@
+<p style="color: red;">Dear {{ user.username|capitalize }},</p>
+<p>Congratulations!</p>
+<p>You have created an account with Beats Hub</p>
+<br>
+<p>Follow this link to login:</p>
+<p>{{ url_for('auth.login', _external=True) }}</p>
+<br>
+<p>Sincerely,</p>
+<p>Beatz Hub Team</p>

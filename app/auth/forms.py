@@ -1,11 +1,12 @@
 from ..models import User
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, SubmitField, ValidationError, BooleanField
+from wtforms import StringField, PasswordField, SubmitField, ValidationError, BooleanField, RadioField
 from wtforms.validators import Required, Email, EqualTo, Length
 
 class RegistrationForm(FlaskForm):
     email = StringField('Your Email Address',validators=[Required(),Email()], render_kw={"placeholder": "Email"})
     username = StringField('Enter your username',validators = [Required()], render_kw={"placeholder": "Username"})
+    group = RadioField('', choices=[('Producer','Producer'),('Artist','Artist'),('Dj','Dj')],validators=[(Required())])
     password = PasswordField('Password',validators = [Required(),EqualTo('password_confirm',message = 'Passwords must match')], render_kw={"placeholder": "Password"})
     password_confirm = PasswordField('Confirm Passwords',validators = [Required()], render_kw={"placeholder": "Confirm Password"})
     submit = SubmitField('Sign Up')

@@ -1,53 +1,34 @@
 {% extends 'base.html' %} 
 
 {% block content %}
-<ul class="nav navbar-nav navbar-right topright">
-    <li>
-        <a href="{{url_for('auth.login')}}">
-            <span class="glyphicon glyphicon-user"></span> Sign Up</a>
-    </li>
-    <li>
-        <a href="{{url_for('auth.register')}}">
-            <span class="glyphicon glyphicon-log-in"></span> Login</a>
-    </li>
-</ul>
-
-<div class="head">
-    <h1>
-        <span class="fancy">
-            <span>Beats Hub</span>
-        </span>
-    </h1>
-    <p>
-        <em>The power of music</em>
-    </p>
-
+<div class="container-fluid head">
+    <div class="row">
+        <div class="col-md-12">
+            <h1>Beatz Hub </h1>
+            <p>The power of music</p>
+        </div>
+        <div class="demo">
+            <a href="#section07"><span></span>Scroll</a>
+        </div>
+    </div>
 </div>
-
-
-
-<div class="links" style="list-style:none">
-    <ul>
-        <a class="button" href="#video">Artists</a>
-        <a class="button" href="#">Producers</a>
-        <a class="button" href="#">DJs</a>
-    </ul>
-</div>
-
-
 
 <div class="col-md-12 second" name="video">
-    <br>
+    <h3>When words fail, music speaks</h3>
     <video class="vida" poster="https://m.cdn.sera.to/rane-12-72/posters/masthead_poster_landscape.jpg" autoplay muted loop>
         <source src="https://m.cdn.sera.to/rane-12-72/videos/masthead_landscape_1mb.mp4" type="video/mp4">
     </video>
 </div>
 
-<div class="container-fluid" style="padding-top:60vh">
-    <div class="col-md-9">
-        <div class="col-md-12">
-            <div class="artists">
+<div class="container-fluid third">
+    <div class="container">
+        <h2 class="text-center">What we do</h2>
+        <h4 class="text-center">Our passion is music</h4>
+        <div class="row center">
+            <div class="col-md-5">
                 <img src="{{url_for('static',filename='Images/image10.jpg')}}">
+            </div>
+            <div class="col-md-5">
                 <p>If you are an upcoming artist or new to the industry, using beats hub you can post your most recent demo
                     at the artists channel and let our team of proffessionals be the judges thus eventually we can find the
                     best producer that suits you, who can coach you accordingly as well as advice on the way forward.
@@ -62,9 +43,12 @@
                 </ul>
             </div>
         </div>
-        <div class="col-md-12">
-            <div class="Djs">
+        <hr>
+        <div class="row center">
+            <div class="col-md-5">
                 <img src="{{url_for('static',filename='Images/image11.jpg')}}">
+            </div>
+            <div class="col-md-5">
                 <p>Beats-hub is the best onestop platform to access clean extended exclusive music files from oldschool to modern
                     in all genres. Save yourself the research hustle and rely the task on us and access content at an affordable
                     subscription fee
@@ -77,15 +61,15 @@
                 <ul>
                     <a href="#" class="myButton">Interact</a>
                     <a href="#" class="myButton">Featured Djs</a>
-
-
                 </ul>
             </div>
         </div>
-
-        <div class="col-md-12">
-            <div class="Producers">
+        <hr>
+        <div class="row center">
+            <div class="col-md-5">
                 <img src="{{url_for('static',filename='Images/image12.jpg')}}">
+            </div>
+            <div class="col-md-5">
                 <p>Get to interact in a community of passionate producers and learn from others as they learn from your contributions.
                     Get to meet new talented artists and work with them to make great exempolary work. Also get to interact
                     with djs and gain feed back off your music projects incoorporate the feedback to our work and improve
@@ -101,85 +85,6 @@
                 </p>
             </div>
         </div>
-    </div>
-
-
-    <div class="col-md-3">
-
-        <ul class class="aside">
-            <div class="dropdown">
-                <button class="asidebtn">Post</button>
-                <div class="dropdown-content">
-                    <a href="#">Music</a>
-                    <a href="#">Demo</a>
-                    <a href="#">Remixes</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="asidebtn">Catalogue</button>
-                <div class="dropdown-content" style="text-align: center">
-                    <a href="#">Most rated</a>
-                    <a href="#">Recent uploads</a>
-                    <a href="#">Popular remixes</a>
-                </div>
-            </div>
-            <div class="dropdown">
-                <button class="asidebtn">Genres</button>
-                <div class="dropdown-content">
-                    <a href="#">Hop Hop</a>
-                    <a href="#">RNB</a>
-                    <a href="#">TRAP</a>
-                    <a href="#">House Music</a>
-                    <a href="">Dubstep</a>
-                    <a href="">Kwaito</a>
-                    <a href="">Afro Soul</a>
-                </div>
-            </div>
-        </ul>
-        <div class="">
-            <ul>
-                <blockquote class="list-unstyled sideimg">
-                    <div class="col-md-12">
-                        <h2>Recent Activities</h2>
-                        <li>
-                            <img class="cake" src="{{url_for('static',filename='Images/users/user1.png')}}" alt="">User 1</li>
-                        <li>
-                            <img class="cake" src="{{url_for('static',filename='Images/users/user1.png')}}" alt="">User 2</li>
-                        <li>
-                            <img class="cake" src="{{url_for('static',filename='Images/users/user1.png')}}" alt="">User 3</li>
-                        <li>
-                            <img class="cake" src="{{url_for('static',filename='Images/users/user1.png')}}" alt="">User 4</li>
-                        <li>
-                            <img class="cake" src="{{url_for('static',filename='Images/users/user1.png')}}" alt="">User 5</li>
-                        <li>
-                            <img class="cake" src="{{url_for('static',filename='Images/users/user1.png')}}" alt="">User 6</li>
-
-                    </div>
-
-                </blockquote>
-            </ul>
-
-            <ul>
-                <blockquote class="list-unstyled sideimg">
-                    <div class="col-md-12">
-                        <h2>Developers</h2>
-                        <li>
-                            <img class="cake" src="{{url_for('static',filename='Images/users/user1.png')}}" alt="">Victor Maina</li>
-                        <li>
-                            <img class="cake" src="{{url_for('static',filename='Images/users/user2.png')}}" alt="">Sarah Marion</li>
-                        <li>
-                            <img class="cake" src="{{url_for('static',filename='Images/users/user1.png')}}" alt="">Richard Waweru</li>
-                        <li>
-                            <img class="cake" src="{{url_for('static',filename='Images/users/user2.png')}}" alt="">Eddie Murungi</li>
-
-
-                    </div>
-
-                </blockquote>
-            </ul>
-
-        </div>
-
     </div>
 </div>
 

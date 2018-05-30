@@ -1,0 +1,9 @@
+Dear {{ new_subscription.name|capitalize }},
+
+Congratulations!
+
+You have subscribed to BeauCar blog.!
+
+You will now receive the updates on new blog when they are posted
+Sincerely,
+BeauCar Blog Team

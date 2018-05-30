@@ -1,0 +1,11 @@
+Dear {{ user.username|capitalize }},
+
+Congratulations!
+
+You have been added as a contributor for the BeauCar blog.
+
+{{ url_for('auth.login', _external=True) }}
+
+Sincerely,
+
+The BeauCar Blog Team

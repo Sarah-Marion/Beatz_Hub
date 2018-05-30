@@ -1,30 +1,52 @@
 <div id="primary-nav" class="sidenav">
-    <a href="javascript:void(0)" class="closebtn" id="close-nav">&times;</a>
-    <a href="#">About</a>
-    <a href="#">Services</a>
-    <a href="#">Clients</a>
-    <a href="#">Contact</a>
+  <a href="javascript:void(0)" class="closebtn" id="close-nav">&times;</a>
+  <a href="#">About</a>
+  <a href="#">Services</a>
+  <a href="#">Clients</a>
+  <a href="#">Contact</a>
 </div>
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-    <a class="navbar-brand" id="open-nav" href="#page-top"><i class="fa fa-bars" aria-hidden="false"></i></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarText">
-      <ul class="navbar-nav mr-auto">
-        <li class="nav-item active">
-          <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Features</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Pricing</a>
-        </li>
-      </ul>
-      <span class="navbar-text">
-        Navbar text with an inline element
-      </span>
-    </div>
-  </nav>
+  <a class="navbar-brand" id="open-nav" href="#page-top">
+    <i class="fa fa-bars" aria-hidden="false"></i>
+  </a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText"
+    aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarText">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="/">Home
+          <span class="sr-only">(current)</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Artists</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Producers</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">DJs</a>
+      </li>
+    </ul>
+    <ul class="navbar-nav my-2 my-lg-o">
+      {% if current_user.is_authenticated %}
+      <li class="nav-item">
+        <a href="{{url_for('main.profile', username = current_user.username)}}" class="nav-link">{{current_user.username|capitalize}}</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{url_for('auth.logout')}}" class="nav-link">Log Out</a>
+      </li>
+      {% else %}
+      <li class="nav-item">
+        <a href="{{url_for('auth.login')}}" class="nav-link">Login</a>
+      </li>
+      <li class="nav-item">
+        <a href="{{url_for('auth.register')}}" class="nav-link">Register</a>
+      </li>
+      {% endif %}
+    </ul>
+  </div>
+</nav>

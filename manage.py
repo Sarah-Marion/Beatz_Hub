@@ -3,8 +3,6 @@ from flask_script import Manager, Server
 from app.models import User, Role, Post, Comment
 from flask_migrate import Migrate, MigrateCommand
 
-
-
 # Creating app instance
 
 app = create_app('development')
@@ -25,8 +23,6 @@ def test():
 	import unittest
 	tests = unittest.TestLoader().discover('tests')
 	unittest.TextTestRunner(verbosity=2).run(tests)
-
-
 
 @manager.shell
 def make_shell_context():

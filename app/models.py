@@ -16,6 +16,7 @@ class User(UserMixin,db.Model):
     id = db.Column(db.Integer, primary_key = True)
     username = db.Column(db.String(48), unique = True, index=True)
     email = db.Column(db.String(48),unique=True, index = True)
+    group = db.Column(db.String())
     hash_pass = db.Column(db.String(255)) 
 
     posts = db.relationship('Post', backref='user', lazy='dynamic')
