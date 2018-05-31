@@ -1,6 +1,6 @@
 # Beatz_Hub
 
-<!-- > A personal Blog where users can subscribe, post and comment on articles posted. -->
+This is a website that links Producers, Djs and Artists in the music industry with the objective of improving their respective crafts to develop the industry as a whole.  
 
 ## Authors
 
@@ -16,25 +16,26 @@
 
 As a user I would like:
 
-<!-- > * to view the different categories.
-> * to see the pitches other people have posted.
-> * to comment on the different pitches and leave feedback.
-> * to submit a pitch in any category.
-> * to vote on the pitch they liked and give it a downvote or upvote. -->
+> * to sign up and login to an account
+> * to join the group consisting of members of the same proffesion field they are
+> * to interact with other stake holders in the music industry
+> * to post links of their works for display
+> * to review and vote for other members' posts
+
 
 ## How to use it
 
 > * Internet connection
-<!-- > * Click https://pitchthis.herokuapp.com/) <br/>
+> * Click https://beatzhub.herokuapp.com/) <br/>
   or <br/>
-> * Copy https://pitchthis.herokuapp.com/) and  Paste the link on your prefered browser -->
+> * Copy https://beatzhub.herokuapp.com/) and  Paste the link on your prefered browser -->
 
 ## How it works
 
 > * A user can sign up either as Dj, Artist, Producer or as a Fan.
 > * A user can subscribe to receive email notifications
-> * A user can view articles posted
-> * A user can also post comments and articles.
+> * A user can view demos or official releases posted
+> * A user can also post comments for other posted work
 
 ## Technologies Used
 
