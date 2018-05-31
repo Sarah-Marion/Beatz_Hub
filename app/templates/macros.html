@@ -1,0 +1,44 @@
+{% macro displayPosts(all_posts)%}
+    {% for post in all_posts %}
+    <div class="col-md-8 posts">
+        <h4><a href="{{url_for('main.fullpost',id=post.id)}}">{{post.title}}</a><span class="small"> {{post.user.username|capitalize}} - {{post.user.group}}</span></h4>
+        <p> {{post.post|truncate(200)}} </p>
+        {% if post.image_url %}
+        <iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/{{post.image_url}}?autoplay=0"
+            frameborder="0">
+        </iframe>
+        {% endif %}
+        <p class="small"> {{post.timeposted.strftime('%Y-%m-%d %H:%M')}} </p>
+        <hr>
+        <a id="get-comment" href="{{url_for('main.fullpost',id=post.id)}}">Write comment</a>
+    </div>
+    {% endfor %}
+{% endmacro %}
+
+{% macro displayComments(comments) %}
+    {% for comment in comments %}<hr>
+    <div class="comment">
+        <p>
+            <a href="/user/{{comment.user.username}}&{{comment.user.id}}">{{comment.commenter|capitalize}}</a>
+        </p>
+        <p>{{comment.comment}}</p>
+    </div>
+    {% endfor %}
+{% endmacro %}
+
+{% macro displayCategoryPosts(all_posts)%}
+    {% for post in all_posts %}
+    <div class="col-md-8 posts">
+        <h4><a href="{{url_for('main.fullpost',id=post.id)}}">{{post.title}}</a><span class="small"> {{post.user.username|capitalize}} - {{post.user.group}}</span></h4>
+        <p> {{post.post|truncate(200)}} </p>
+        {% if post.image_url %}
+        <iframe id="ytplayer" type="text/html" width="640" height="360" src="https://www.youtube.com/embed/{{post.image_url}}?autoplay=0"
+            frameborder="0">
+        </iframe>
+        {% endif %}
+        <p class="small"> {{post.timeposted.strftime('%Y-%m-%d %H:%M')}} </p>
+        <hr>
+        <a id="get-comment" href="{{url_for('main.fullpost',id=post.id)}}">Write comment</a>
+    </div>
+    {% endfor %}
+{% endmacro %}

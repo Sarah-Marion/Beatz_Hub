@@ -49,7 +49,7 @@ class User(UserMixin,db.Model):
         return User.query.get(id)  
 
 
-class Post(UserMixin, db.Model):
+class Post(db.Model):
     """ 
     class modelling the posts
     """
@@ -60,19 +60,38 @@ class Post(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String)
     post = db.Column(db.String)
-    image_name = db.Column(db.String)
     image_url = db.Column(db.String)
     timeposted = db.Column(db.DateTime, index=True, default=datetime.utcnow)
+    group = db.Column(db.String)
 
     user_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     comments = db.relationship('Comment', backref='post', lazy='dynamic')
+
+    def save_post(self):
+        db.session.add(self)
+        db.session.commit()
+
+    @classmethod
+    def get_all_posts(cls):
+        posts = Post.query.all()
+        return posts
+    
+    @classmethod
+    def get_post(cls,id):
+        post = Post.query.filter_by(id=id).first()
+        return post
+    
+    @classmethod
+    def get_post_category(cls,group):
+        posts = Post.query.filter_by(group = group).all()
+        return posts
 
     def __repr__(self):
         return f'Post{self.post}'
 
 
 # Role class 
-class Role(UserMixin, db.Model):
+class Role(db.Model):
     """ 
     class modelling the role of each user
     """
@@ -88,7 +107,7 @@ class Role(UserMixin, db.Model):
         return f'Post{self.name}'
 
 # comments
-class Comment(UserMixin, db.Model):
+class Comment(db.Model):
     """ 
     User comment model for each post
     """
@@ -102,12 +121,21 @@ class Comment(UserMixin, db.Model):
     
     users_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     post_id = db.Column(db.Integer, db.ForeignKey('posts.id'))
+
+    def save_comment(self):
+        db.session.add(self)
+        db.session.commit()
+    
+    @classmethod
+    def get_post_comments(cls,post_id):
+        comments = Comment.query.filter_by(post_id=post_id).all()
+        return comments
     
     def __repr__(self):
         return f'Post{self.comment}'
 
 
-class Subscribers(UserMixin, db.Model):
+class Subscribers(db.Model):
 
     __tablename__ = "subscribers"
 

@@ -10,55 +10,102 @@ from datetime import datetime
 
 @main.route('/')
 def index():
-    title = 'Home | Beats Hub'
+    title = 'Home | Beatz Hub'
 
     return render_template('index.html', title=title)
 
-@main.route('/post', methods=['GET', 'POST'])
-def post():
-    all = Post.query.all()
-    all.reverse()
-    print(all)
+@main.route('/home/', methods = ['GET', 'POST'])
+@login_required
+def home():
+    all_posts = Post.get_all_posts()
+    all_posts.reverse()
 
-    Comments = CommentForm()
-    if Comments.validate_on_submit():
-        comment = Comment(comment = Comments.comment.data, commenter = Comments.commenter.data)
-        db.session.add(comment)
-        db.session.commit()
-        print(comment)
-        return redirect(url_for('main.post'))
+    title = 'Home | Beatz Hub'    
+    return render_template('home.html', title = title, posts = all_posts)
 
-    allcomments = Comment.query.all()
-    title = "Post Article"
-    Blog = PostForm()
+@main.route('/create/', methods = ['GET', 'POST'])
+@login_required
+def create_post():
+    form = PostForm()
+    letter = 0
+    
+    if form.validate_on_submit():
+        title_data = form.title.data
+        post_data = form.Entry.data
+        video_data = form.youtube.data
+        if video_data:
+            # video_data = video_data.split('')
+            while letter < len(video_data):
+                if video_data[letter] == '=':
+                    new_word = video_data[letter+1:letter+12]
+                    letter += 1
+                    continue
+                else:
+                    letter +=1
+                    continue
+            
+            new_post = Post(title=title_data, post = post_data, user_id = current_user.id, group = current_user.group, image_url=new_word, timeposted = datetime.now())
+        else:
+            new_post = Post(title=title_data, post = post_data, user_id = current_user.id, group = current_user.group, timeposted = datetime.now())
+            
+        new_post.save_post()
+
+        return redirect(url_for('main.home'))
+    
+    return render_template('create_posts.html', title='Create Post', post_form = form)
+
+# @main.route('/post/', methods=['GET', 'POST'])
+# def post():
+#     all = Post.query.all()
+#     all.reverse()
+#     print(all)
+
+#     Comments = CommentForm()
+#     if Comments.validate_on_submit():
+#         comment = Comment(comment = Comments.comment.data, commenter = Comments.commenter.data)
+#         db.session.add(comment)
+#         db.session.commit()
+#         print(comment)
+#         return redirect(url_for('main.post'))
+
+#     allcomments = Comment.query.all()
+#     title = "Post Article"
+#     Blog = PostForm()
   
-    if Blog.validate_on_submit():
-        post = Post( title = Blog.title.data ,post = Blog.Entry.data, user_id = current_user.id, timeposted = datetime.utcnow() )
-        db.session.add(post)
-        db.session.commit()
-        return redirect(url_for('main.post'))
+#     if Blog.validate_on_submit():
+#         post = Post( title = Blog.title.data ,post = Blog.Entry.data, user_id = current_user.id, timeposted = datetime.utcnow() )
+#         db.session.add(post)
+#         db.session.commit()
+#         return redirect(url_for('main.post'))
  
-    return render_template('post.html', Post = Blog, title = title, posts = all, comment = Comments, allcomments = allcomments)
+#     return render_template('post.html', Post = Blog, title = title, posts = all, comment = Comments, allcomments = allcomments)
 
 
-
-@main.route('/post/<id>', methods=['POST','GET'])
+@main.route('/post/<int:id>', methods=['POST','GET'])
 def fullpost(id):
     
     title= f'Posts' 
-    post = Post.query.filter_by(id=id).first()
+    post = Post.get_post(id)
     Comments = CommentForm()
+
     if Comments.validate_on_submit():
-        comment = Comment(comment = Comments.comment.data, post_id=id, commenter = Comments.commenter.data)
+        comment = Comment(comment = Comments.comment.data, commenter = Comments.commenter.data, post_id=id)
         db.session.add(comment)
         db.session.commit()
-        print(comment)
+
         return redirect(url_for('main.fullpost', id=post.id))
-    allcomments = Comment.query.all()
-    postcomments = Comment.query.filter_by(post_id=id).all()
+
+    postcomments = Comment.get_post_comments(id)
      
 
-    return render_template('fullpost.html', title = title, post = post, comment = Comments, allcomments = allcomments, postcomments = postcomments)
+    return render_template('fullpost.html', title = title, post = post, comment = Comments, postcomments = postcomments)
+
+@main.route('/<group>/')
+def category(group):
+    posts = Post.get_post_category(group)
+    posts.reverse()
+
+    return render_template('posts.html', title=f'{group}', posts = posts)
 
 @main.route('/<int:id>/delete', methods=['POST'])
 @login_required
@@ -70,7 +117,6 @@ def delete(id):
     return redirect(url_for('main.index'))
 
 @main.route('/profile/<username>')
-@login_required
 def profile(username):
     
     user = User.query.filter_by(username = username).first_or_404()

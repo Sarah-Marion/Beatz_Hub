@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8">
+            <form action="" method="POST">
+                {{post_form.hidden_tag()}}
+                <p>{{post_form.title.label}}</p>
+                <p>{{post_form.title}}</p>
+                {% for error in post_form.title.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <p>{{post_form.Entry.label}}</p>
+                <p>{{post_form.Entry}}</p>
+                {% for error in post_form.Entry.errors %}
+                <span style="color: red;">[{{ error }}]</span>
+                {% endfor %}
+
+                <p> {{post_form.youtube.label}} </p>
+                <p> {{post_form.youtube}} </p>
+                <p>{{post_form.submit}}</p>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

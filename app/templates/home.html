@@ -1,0 +1,14 @@
+{% extends 'base.html' %} {% import 'macros.html' as macro %} {% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-2"></div>
+        <div class="col-md-8 top-create text-right">
+            <a href="{{url_for('main.create_post')}}" class="btn btn-primary">Create Post</a>            
+        </div>
+        <div class="col-md-2"></div>
+    </div>
+    <div class="row display-posts">
+        {{macro.displayPosts(posts)}}
+    </div>
+</div>
+{% endblock %}

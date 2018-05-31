@@ -5,13 +5,14 @@ from app.models import Post, Comment, Subscribers
 from flask_wtf.file import FileField, FileRequired, file_allowed
 
 class PostForm(FlaskForm):
-    title = StringField('Title', validators=[DataRequired(),Length(min=1, max=1000)])
-    Entry= TextAreaField('Post your article', validators=[DataRequired(), Length(min=1, max=100000000000)])
+    title = StringField('Title', validators=[DataRequired()],  render_kw={"placeholder": "title"})
+    Entry= TextAreaField('Post your article', validators=[DataRequired()], render_kw={"placeholder": "Post article"})
+    youtube = StringField('Youtube Video',  render_kw={"placeholder": "YouTube link"})
     submit = SubmitField('Submit')
 
 class CommentForm(FlaskForm):
-    comment = TextAreaField('Post Comment', [DataRequired(), Length(min=1)])
-    commenter = StringField("Name" ,validators=[DataRequired()] )
+    comment = TextAreaField('Post Comment', [DataRequired(), Length(min=1)],  render_kw={"placeholder": "Comment"})
+    commenter = StringField("Name" ,validators=[DataRequired()],  render_kw={"placeholder": "Name"})
     submit = SubmitField('Submit Comment')
 
 def validate_subscriber(form, data_field):
