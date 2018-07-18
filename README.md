@@ -4,7 +4,7 @@ This is a website that links Producers, Djs and Artists in the music industry wi
 
 ## Authors
 
-> By **Sarah Marion**, **Victor Mundia**, **Richard Waweru**, **Eddie Mutugi**
+> By **Sarah Marion**, **Victor Mundia** & **Richard Waweru**
 
 > -----------------------------------------------------------
 
