@@ -94,7 +94,6 @@ As a user I would like:
 * devsarahmarion@gmail.com
 * grooviqdeejay@gmail.com
 * developerwaweru@gmail.com
-* mutugieddie3@gmail.com
 
 
 ## Licence
