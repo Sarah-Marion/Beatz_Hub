@@ -99,7 +99,7 @@ As a user I would like:
 
 ## Licence
 
-> Copyright (c) 2018 **Dev Sarah Marion**, **Victor Mundia**, **Richard Waweru**, **Eddie Mutugi**
+> Copyright (c) 2018 **Dev Sarah Marion**, **Victor Mundia**, **Richard Waweru**
 
 ### YOU ARE NOT GRANTED AUTHORITY, RIGHTS OR LICENCES TO THIS PROJECT WITHOUT THE EXPRESS CONSENT OF VICTOR MUNDIA.
 
